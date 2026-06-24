@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREK Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Menu latéral rétractable au survol avec historique -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <h3 class="sidebar-title">Menu</h3>
+            
+            <!-- Champ de saisie pour le nom de la nouvelle discussion -->
+            <div id="chatNameContainer" class="chat-name-wrapper">
+                <input 
+                    id="chatNameInput" 
+                    type="text" 
+                    placeholder="Nom du chat..."
+                    autocomplete="off"
+                >
+                <button onclick="saveChatName()" class="save-name-btn" title="Enregistrer">💾</button>
+            </div>
+
+            <button id="newModeBtn" class="new-btn" onclick="toggleNewMode()">
+                New <span id="starIcon" class="star-icon">⭐</span>
+            </button>
+
+            <!-- Conteneur dynamique pour l'historique des discussions -->
+            <div class="history-separator">Discussions enregistrées</div>
+            <div id="historyContainer" class="history-list"></div>
+        </div>
+    </div>
+
+    <!-- En-tête GREK cliquable -->
+    <div class="brand-header" onclick="goToHome()" title="Retour à l'accueil">
+        <div class="logo-circle">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Grek Logo" class="logo-img">
+        </div>
+        <h1 class="brand-title">GREK</h1>
+    </div>
+
+    <!-- Message de bienvenue -->
+    <div id="welcomeMessage" class="welcome-text">
+        Bonjour, qu'est-ce que vous voulez faire aujourd'hui ?
+    </div>
+
+    <!-- Zone de chat -->
+    <div id="chat" class="chat-container"></div>
+
+    <!-- Zone de saisie principale -->
+    <div id="inputContainer" class="input-container centered">
+        <div class="input-wrapper">
+            <button class="action-btn plus-btn" onclick="openFileExplorer()">+</button>
+            
+            <input 
+                id="fileInput" 
+                type="file" 
+                accept="*" 
+                style="display: none;" 
+                onchange="handleFileSelect(this)"
+            >
+            
+            <input 
+                id="messageInput" 
+                type="text" 
+                placeholder="Poser votre question 🔍"
+                autocomplete="off"
+            >
+            
+            <button onclick="toggleVoiceInput()" class="action-btn mic-btn">🎤</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
